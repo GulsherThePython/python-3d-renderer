@@ -1,4 +1,5 @@
 import pygame
+from draw import draw_points
 from projection import project_points
 
 pygame.init()
@@ -20,9 +21,6 @@ z_points = [
     300, 300, 300, 300
 ]
 
-focal_length = 500
-center_x = 200
-center_y = 200
 
 running = True
 while running:
@@ -31,4 +29,5 @@ while running:
             running = False
 
     screen.fill((0, 0, 0))
+    draw_points(screen, x_points, y_points, z_points, 60, 400)
     pygame.display.flip()

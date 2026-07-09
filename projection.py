@@ -1,7 +1,11 @@
-def project_points(point, focal_length, center_x, center_y):
+from math import tan, radians
+
+def project_points(point, fov, window_width):
     x, y, z = point
 
-    x_proj = (focal_length * x) / (focal_length + z) + center_x
-    y_proj = -(focal_length * y) / (focal_length + z) + center_y
+    near = window_width / tan(radians(fov) / 2)
+
+    x_proj = (near * x) / (near + z)
+    y_proj = -(near * y) / (near + z)
 
     return (x_proj, y_proj)
