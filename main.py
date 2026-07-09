@@ -1,26 +1,21 @@
 import pygame
-from draw import draw_points
-from projection import project_points
+from draw import draw_cube
+from rotate import rotate_along_z, rotate_along_x
 
 pygame.init()
 
 screen = pygame.display.set_mode((400, 400))
+clock = pygame.time.Clock()
 
-x_points = [
-    -50,  50,  50, -50,
-    -50,  50,  50, -50
-]
+vertex1 = (-50, -50, -50)
+vertex2 = ( 50, -50, -50)
+vertex3 = ( 50,  50, -50)
+vertex4 = (-50,  50, -50)
 
-y_points = [
-    -50, -50,  50,  50,
-    -50, -50,  50,  50
-]
-
-z_points = [
-    200, 200, 200, 200,
-    300, 300, 300, 300
-]
-
+vertex5 = (-50, -50,  50)
+vertex6 = ( 50, -50,  50)
+vertex7 = ( 50,  50,  50)
+vertex8 = (-50,  50,  50)
 
 running = True
 while running:
@@ -29,5 +24,26 @@ while running:
             running = False
 
     screen.fill((0, 0, 0))
-    draw_points(screen, x_points, y_points, z_points, 60, 400)
+
+    vertex1 = rotate_along_z(vertex1, 1)
+    vertex2 = rotate_along_z(vertex2, 1)
+    vertex3 = rotate_along_z(vertex3, 1)
+    vertex4 = rotate_along_z(vertex4, 1)
+    vertex5 = rotate_along_z(vertex5, 1)
+    vertex6 = rotate_along_z(vertex6, 1)
+    vertex7 = rotate_along_z(vertex7, 1)
+    vertex8 = rotate_along_z(vertex8, 1)
+
+    vertex1 = rotate_along_x(vertex1, 1)
+    vertex2 = rotate_along_x(vertex2, 1)
+    vertex3 = rotate_along_x(vertex3, 1)
+    vertex4 = rotate_along_x(vertex4, 1)
+    vertex5 = rotate_along_x(vertex5, 1)
+    vertex6 = rotate_along_x(vertex6, 1)
+    vertex7 = rotate_along_x(vertex7, 1)
+    vertex8 = rotate_along_x(vertex8, 1)
+
+    draw_cube(screen, vertex1, vertex2, vertex3, vertex4, vertex5, vertex6, vertex7, vertex8, 60, 400)
+
     pygame.display.flip()
+    clock.tick(60)

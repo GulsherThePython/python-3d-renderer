@@ -1,16 +1,19 @@
 from projection import project_points
 import pygame
 
-def draw_points(screen, x_points, y_points, z_points, fov, window_width):
+def draw_cube(
+        screen, vertex1, vertex2, vertex3, 
+        vertex4, vertex5, vertex6, vertex7,
+        vertex8, fov, window_width
+        ):
+    
     projected_points = []
-    for i in range(len(x_points)):
-        projected_points.append((project_points((x_points[i], y_points[i], z_points[i]), fov, window_width)))
-        projected_points[i] = (projected_points[i][0] + window_width / 2, projected_points[i][1] + window_width / 2)
-
-    for x, y in projected_points:
-        screen_x = int(x)
-        screen_y = int(y)
-        pygame.draw.circle(screen, (255, 255, 255), (screen_x, screen_y), 2)
+    for vertex in [
+        vertex1, vertex2, vertex3, vertex4,
+        vertex5, vertex6, vertex7, vertex8
+    ]:
+        x_proj, y_proj = project_points(vertex, fov, window_width)
+        projected_points.append((x_proj + window_width / 2, y_proj + window_width / 2))
 
     pygame.draw.line(screen, (255, 255, 255), projected_points[0], projected_points[1])
     pygame.draw.line(screen, (255, 255, 255), projected_points[1], projected_points[2])
