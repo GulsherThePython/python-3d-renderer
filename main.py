@@ -1,22 +1,14 @@
 import pygame
 from draw import draw_cube
 from rotate import rotate_along_z, rotate_along_x, rotate_along_y
+from shapes import cube
 
 pygame.init()
 
 screen = pygame.display.set_mode((400, 400))
 clock = pygame.time.Clock()
 
-vertex1 = (-50, -50, -50)
-vertex2 = ( 50, -50, -50)
-vertex3 = ( 50,  50, -50)
-vertex4 = (-50,  50, -50)
-
-vertex5 = (-50, -50,  50)
-vertex6 = ( 50, -50,  50)
-vertex7 = ( 50,  50,  50)
-vertex8 = (-50,  50,  50)
-
+vertices = cube(0, 0, 10, 10)
 
 
 running = True
