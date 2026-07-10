@@ -13,7 +13,10 @@ def draw_cube(
         vertex5, vertex6, vertex7, vertex8
     ]:
         x_proj, y_proj = project_points(vertex, fov, window_width)
-        projected_points.append((x_proj + window_width / 2, y_proj + window_width / 2))
+        if x_proj is not None and y_proj is not None:
+            projected_points.append((x_proj + window_width / 2, y_proj + window_width / 2))
+        else:
+            projected_points.append(None)
 
     pygame.draw.line(screen, (255, 255, 255), projected_points[0], projected_points[1])
     pygame.draw.line(screen, (255, 255, 255), projected_points[1], projected_points[2])
