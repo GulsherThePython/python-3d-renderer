@@ -22,3 +22,14 @@ def rotate_along_x(point, angle):
     ]
 
     return transform_3d_vector(rotation_matrix, point)
+
+def rotate_along_y(point, angle):
+    theta = radians(angle)
+
+    rotation_matrix = [
+        cos(theta),  0, sin(theta),
+        0,           1, 0,
+        -sin(theta), 0, cos(theta)
+    ]
+
+    return transform_3d_vector(rotation_matrix, point)

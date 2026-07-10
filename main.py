@@ -1,6 +1,6 @@
 import pygame
 from draw import draw_cube
-from rotate import rotate_along_z, rotate_along_x
+from rotate import rotate_along_z, rotate_along_x, rotate_along_y
 
 pygame.init()
 
@@ -42,6 +42,16 @@ while running:
     vertex6 = rotate_along_x(vertex6, 1)
     vertex7 = rotate_along_x(vertex7, 1)
     vertex8 = rotate_along_x(vertex8, 1)
+
+    vertex1 = rotate_along_y(vertex1, 1)
+    vertex2 = rotate_along_y(vertex2, 1)
+    vertex3 = rotate_along_y(vertex3, 1)
+    vertex4 = rotate_along_y(vertex4, 1)
+    vertex5 = rotate_along_y(vertex5, 1)
+    vertex6 = rotate_along_y(vertex6, 1)
+    vertex7 = rotate_along_y(vertex7, 1)
+    vertex8 = rotate_along_y(vertex8, 1)
+    
 
     draw_cube(screen, vertex1, vertex2, vertex3, vertex4, vertex5, vertex6, vertex7, vertex8, 60, 400)
 
