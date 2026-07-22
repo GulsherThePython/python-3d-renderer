@@ -1,14 +1,15 @@
 import pygame
-from draw import draw_cube
+from draw import draw_wireframe
+import draw
 from rotate import rotate_along_z, rotate_along_x, rotate_along_y
-from shapes import cube
+from shapes import cube, cube_edges
 
 pygame.init()
 
 screen = pygame.display.set_mode((400, 400))
 clock = pygame.time.Clock()
 
-vertices = cube(0, 0, 10, 10)
+vertices = cube(0, 0, 100, 10)
 
 
 running = True
@@ -19,9 +20,7 @@ while running:
 
     screen.fill((0, 0, 0))
 
-
-
-    draw_cube(screen, vertices, 60, 400)
+    draw_wireframe(screen, vertices, 60, 400, cube_edges())
 
     pygame.display.flip()
     clock.tick(60)
