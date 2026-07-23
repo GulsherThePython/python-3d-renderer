@@ -12,3 +12,8 @@ def transform_3d_vector(m, v):
 
 def get_index_of_flat_matrix(row, col, noc):
     return row * noc + col
+
+def add_vectors(v1, v2):
+    if len(v1) != len(v2):
+        raise ValueError("Vectors must be of the same length")
+    return [v1[i] + v2[i] for i in range(len(v1))]
