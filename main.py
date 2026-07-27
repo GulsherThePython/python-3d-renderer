@@ -1,4 +1,5 @@
 import pygame
+from camera import handle_camera_movement, handle_camera_rotation
 from scene import render_scene
 from shapes import cube, cube_edges
 
@@ -14,7 +15,19 @@ cube1 = {
     "angle": 0
 }
 
-scene = [cube1]
+cube2 = {
+    "vertices": cube(5),
+    "edges": cube_edges(),
+    "position": [10, 0, 50],
+    "angle": 0
+}
+
+scene = [cube1, cube2]
+
+camera = {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0]
+}
 
 running = True
 while running:
@@ -24,9 +37,11 @@ while running:
 
     screen.fill((0, 0, 0))
 
-    cube1["angle"] += 1
+    handle_camera_movement(camera)
 
-    render_scene(scene, screen)
+    handle_camera_rotation(camera)
+
+    render_scene(scene, screen, camera)
 
     pygame.display.flip()
     clock.tick(60)
