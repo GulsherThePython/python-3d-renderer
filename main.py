@@ -1,47 +1,55 @@
+import asyncio
 import pygame
 from camera import handle_camera_movement, handle_camera_rotation
 from scene import render_scene
 from shapes import cube, cube_edges
 
-pygame.init()
 
-screen = pygame.display.set_mode((400, 400))
-clock = pygame.time.Clock()
+async def main():
+    pygame.init()
 
-cube1 = {
-    "vertices": cube(10),
-    "edges": cube_edges(),
-    "position": [0, 0, 50],
-    "angle": 0
-}
+    screen = pygame.display.set_mode((400, 400))
+    clock = pygame.time.Clock()
 
-cube2 = {
-    "vertices": cube(5),
-    "edges": cube_edges(),
-    "position": [10, 0, 50],
-    "angle": 0
-}
+    cube1 = {
+        "vertices": cube(10),
+        "edges": cube_edges(),
+        "position": [0, 0, 50],
+        "angle": 0
+    }
 
-scene = [cube1, cube2]
+    cube2 = {
+        "vertices": cube(5),
+        "edges": cube_edges(),
+        "position": [10, 0, 50],
+        "angle": 0
+    }
 
-camera = {
-    "position": [0, 0, 0],
-    "rotation": [0, 0, 0]
-}
+    scene = [cube1, cube2]
 
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
+    camera = {
+        "position": [0, 0, 0],
+        "rotation": [0, 0, 0]
+    }
 
-    screen.fill((0, 0, 0))
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
 
-    handle_camera_movement(camera)
+        screen.fill((0, 0, 0))
 
-    handle_camera_rotation(camera)
+        handle_camera_movement(camera)
 
-    render_scene(scene, screen, camera)
+        handle_camera_rotation(camera)
 
-    pygame.display.flip()
-    clock.tick(60)
+        render_scene(scene, screen, camera)
+
+        pygame.display.flip()
+        clock.tick(60)
+        await asyncio.sleep(0)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
